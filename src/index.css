@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+:root {
+  --lime: hsl(61, 70%, 52%);
+  --red: hsl(4, 69%, 50%);
+  --white: hsl(0, 0%, 100%);
+  --slate-100: hsl(202, 86%, 94%);
+  --slate-300: hsl(203, 41%, 72%);
+  --slate-500: hsl(200, 26%, 54%);
+  --slate-700: hsl(200, 24%, 40%);
+  --slate-900: hsl(202, 55%, 16%);
+  --dark-slate: hsl(201, 54%, 16%);
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.main-container {
+  background-color: var(--slate-100);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator-container--main {
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 15px;
+}
+
+.calculations-container {
+  flex: 1;
+  padding: 40px;
+}
+
+.calculations-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calculations-heading {
+  font-size: 25px;
+  color: var(--slate-900);
+}
+
+.reset {
+  border: none;
+  background-color: inherit;
+  text-decoration: underline;
+  color: var(--slate-700);
+  font-weight: 500;
+}
+
+.calculations-form {
+}
+
+.form-controls-container {
+  padding: 35px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.control-label {
+  font-size: 16px;
+  color: var(--slate-700);
+  font-weight: 400;
+}
+
+.control-input-icon-container {
+  position: relative;
+}
+
+.control-icon {
+  position: absolute;
+  top: 2px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 20px;
+  background-color: var(--slate-100);
+  color: var(--slate-700);
+  font-weight: 600;
+}
+
+.control-icon--left {
+  left: 2px;
+  border-radius: 5px 0 0 5px;
+}
+
+.control-icon--right {
+  right: 2px;
+  border-radius: 0 5px 5px 0;
+}
+
+.control-input {
+  border: 1px solid var(--slate-500);
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  padding-left: 60px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.term-rate-container {
+  display: flex;
+  gap: 25px;
+}
+
+.radio-control-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border: 1px solid var(--slate-500);
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.calculate-btn {
+  background-color: var(--lime);
+  border: none;
+  padding: 15px 40px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  gap: 15px;
+}
+
+.results-container {
+  flex: 1;
+  background-color: var(--dark-slate);
+  border-radius: 0 15px 15px 50px;
+}

@@ -1,6 +1,18 @@
+import { useState } from "react";
 import calculatorIcon from "./assets/images/icon-calculator.svg";
+import Results from "./components/Results";
+
+import { initialCalculatorDataType } from "./types/calculatorTypes";
+
+const initialCalculatorData: initialCalculatorDataType = {
+  mortgageAmount: 300000,
+  mortgageTerm: 25,
+  interestRate: 5.25,
+  mortgageType: "repayment",
+};
 
 export default function App() {
+  const [calculatorData, setCalculatorData] = useState(initialCalculatorData);
   return (
     <div className="main-container">
       <div className="calculator-container--main">
@@ -79,7 +91,7 @@ export default function App() {
             </button>
           </form>
         </div>
-        <div className="results-container">Results</div>
+        <Results data={calculatorData} />
       </div>
     </div>
   );

@@ -148,9 +148,3 @@
   display: flex;
   gap: 15px;
 }
-
-.results-container {
-  flex: 1;
-  background-color: var(--dark-slate);
-  border-radius: 0 15px 15px 50px;
-}

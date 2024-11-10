@@ -1,0 +1,68 @@
+.results_container {
+  flex: 1;
+  background-color: var(--slate-900);
+  padding: 40px;
+  border-radius: 0 15px 15px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty_results_container {
+  flex: 1;
+  background-color: var(--slate-900);
+  padding: 40px;
+  border-radius: 0 15px 15px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-align: center;
+}
+
+.results_header {
+  color: var(--slate-100);
+  margin-bottom: 25px;
+  font-size: 25px;
+}
+
+.results_text {
+  color: var(--slate-300);
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 300;
+}
+
+.results_table {
+  background-color: black;
+  margin: 35px 0;
+  padding: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.results_row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.results_monthly_repayment {
+  color: var(--lime);
+  font-size: 56px;
+  font-weight: 700;
+}
+
+.results_total_repayment {
+  color: var(--slate-100);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.results_divider {
+  height: 1px;
+  width: 100%;
+  background-color: var(--slate-900);
+}

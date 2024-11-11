@@ -35,7 +35,7 @@
 
 .calculator-container--main {
   background-color: var(--white);
-  display: flex;
+  display: grid;
   justify-content: space-between;
   width: 100%;
   max-width: 1100px;
@@ -44,11 +44,13 @@
 
 .calculations-container {
   flex: 1;
-  padding: 40px;
+  padding: 40px 20px;
 }
 
 .calculations-header {
   display: flex;
+  flex-direction: column;
+  gap: 12px;
   justify-content: space-between;
 }
 
@@ -63,13 +65,14 @@
   text-decoration: underline;
   color: var(--slate-700);
   font-weight: 500;
+  text-align: left;
 }
 
 .calculations-form {
 }
 
 .form-controls-container {
-  padding: 35px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -126,6 +129,7 @@
 
 .term-rate-container {
   display: flex;
+  flex-direction: column;
   gap: 25px;
 }
 
@@ -147,4 +151,33 @@
   font-weight: 700;
   display: flex;
   gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .calculator-container--main {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calculations-container {
+    padding: 40px;
+  }
+
+  .form-controls-container {
+    padding: 35px 0;
+  }
+
+  .calculations-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .term-rate-container {
+    flex-direction: row;
+  }
+
+  .calculate-btn {
+    width: fit-content;
+  }
 }

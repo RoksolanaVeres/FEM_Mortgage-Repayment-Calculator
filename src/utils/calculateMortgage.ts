@@ -1,6 +1,6 @@
-import { initialCalculatorDataType } from "../types/calculatorTypes";
+import { calculatorDataType } from "../types/calculatorTypes";
 
-export function calculateMortgage(data: initialCalculatorDataType) {
+export function calculateMortgage(data: calculatorDataType) {
   const { mortgageAmount, mortgageTerm, interestRate, mortgageType } = data;
 
   const monthlyInterestRate = interestRate / 100 / 12;

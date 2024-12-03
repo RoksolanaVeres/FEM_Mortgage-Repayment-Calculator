@@ -1,6 +1,6 @@
-export type initialCalculatorDataType = {
+export type calculatorDataType = {
   mortgageAmount: number;
   mortgageTerm: number;
   interestRate: number;
-  mortgageType: string;
+  mortgageType: "repayment" | "interestOnly";
 };

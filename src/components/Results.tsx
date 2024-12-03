@@ -2,14 +2,15 @@ import emptyResultImg from "../assets/images/illustration-empty.svg";
 import classes from "./Results.module.css";
 
 import { calculateMortgage } from "../utils/calculateMortgage.ts";
-import { initialCalculatorDataType } from "../types/calculatorTypes.ts";
+import { calculatorDataType } from "../types/calculatorTypes.ts";
 
 type ResultsProps = {
-  data: initialCalculatorDataType;
+  data: calculatorDataType;
 };
 
 export default function Results({ data }: ResultsProps) {
   const { monthlyRepayment, totalRepayment } = calculateMortgage(data);
+
   return (
     // <EmptyFormResults />
     <div className={classes.results_container}>

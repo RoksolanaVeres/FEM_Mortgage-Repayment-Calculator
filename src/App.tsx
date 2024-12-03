@@ -1,23 +1,54 @@
-import { useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import calculatorIcon from "./assets/images/icon-calculator.svg";
 import Results from "./components/Results";
 
-import { initialCalculatorDataType } from "./types/calculatorTypes";
-
-const initialCalculatorData: initialCalculatorDataType = {
-  mortgageAmount: 300000,
-  mortgageTerm: 25,
-  interestRate: 5.25,
-  mortgageType: "repayment",
-};
+import { calculatorDataType } from "./types/calculatorTypes";
 
 export default function App() {
-  const [calculatorData, setCalculatorData] = useState(initialCalculatorData);
+  const [calculatorData, setCalculatorData] = useState<calculatorDataType>({
+    mortgageAmount: 0,
+    mortgageTerm: 0,
+    interestRate: 0,
+    mortgageType: "repayment",
+  });
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  function handleFormSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (formRef.current) {
+      const fd = new FormData(formRef.current);
+
+      const mortgageAmount = +(fd.get("mortgage-amount") as string) || 0;
+      const mortgageTerm = +(fd.get("mortgage-term") as string) || 0;
+      const interestRate = +(fd.get("interest-rate") as string) || 0;
+      const mortgageType =
+        (fd.get("mortgage-type") as string) === "repayment" ||
+        (fd.get("mortgage-type") as string) === "interestOnly"
+          ? (fd.get("mortgage-type") as "repayment" | "interestOnly")
+          : "repayment";
+
+      if (!mortgageAmount || !mortgageTerm || !interestRate || !mortgageType) {
+        return;
+      }
+
+      setCalculatorData({
+        mortgageAmount,
+        mortgageTerm,
+        interestRate,
+        mortgageType,
+      });
+    }
+  }
+
+  console.log(calculatorData);
+
   return (
     <div className="main-container">
       <div className="calculator-container--main">
         <div className="calculations-container">
-          <form action="" className="calculations-form">
+          {/* form */}
+          <form action="" className="calculations-form" ref={formRef} onSubmit={handleFormSubmit}>
             <div className="calculations-header">
               <h1 className="calculations-heading">Mortgage Calculator</h1>
               <input type="reset" value="Clear All" className="btn reset" />
@@ -75,12 +106,18 @@ export default function App() {
                 <h2 className="control-label">Mortgage Type</h2>
 
                 <div className="radio-control-wrapper">
-                  <input type="radio" id="repayment" name="mortgage-type" value="repayment" />
+                  <input
+                    type="radio"
+                    id="repayment"
+                    name="mortgage-type"
+                    value="repayment"
+                    defaultChecked
+                  />
                   <label htmlFor="repayment">Repayment</label>
                 </div>
 
                 <div className="radio-control-wrapper">
-                  <input type="radio" id="interest" name="mortgage-type" value="interest" />
+                  <input type="radio" id="interest" name="mortgage-type" value="interestOnly" />
                   <label htmlFor="interest">Interest Only</label>
                 </div>
               </div>

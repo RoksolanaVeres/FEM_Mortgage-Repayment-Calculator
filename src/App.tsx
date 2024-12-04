@@ -2,7 +2,7 @@ import { FormEvent, useRef, useState } from "react";
 import calculatorIcon from "./assets/images/icon-calculator.svg";
 import Results from "./components/Results";
 
-import { calculatorDataType } from "./types/calculatorTypes";
+import { calculatorDataType, ErrorFieldsType } from "./types/calculatorTypes";
 
 export default function App() {
   const [calculatorData, setCalculatorData] = useState<calculatorDataType>({
@@ -12,6 +12,10 @@ export default function App() {
     mortgageType: "repayment",
   });
 
+  const [errorFields, setErrorFields] = useState<ErrorFieldsType>({});
+  const { mortgageAmountError, mortgageTermError, interestRateError, mortgageTypeError } =
+    errorFields;
+
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleFormSubmit(e: FormEvent) {
@@ -19,19 +23,52 @@ export default function App() {
     if (formRef.current) {
       const fd = new FormData(formRef.current);
 
-      const mortgageAmount = +(fd.get("mortgage-amount") as string) || 0;
-      const mortgageTerm = +(fd.get("mortgage-term") as string) || 0;
-      const interestRate = +(fd.get("interest-rate") as string) || 0;
-      const mortgageType =
-        (fd.get("mortgage-type") as string) === "repayment" ||
-        (fd.get("mortgage-type") as string) === "interestOnly"
-          ? (fd.get("mortgage-type") as "repayment" | "interestOnly")
-          : "repayment";
+      const rawMortgageAmount = fd.get("mortgage-amount") as string;
+      const rawMortgageTerm = fd.get("mortgage-term") as string;
+      const rawInterestRate = fd.get("interest-rate") as string;
+      const rawMortgageType = fd.get("mortgage-type") as string;
 
-      if (!mortgageAmount || !mortgageTerm || !interestRate || !mortgageType) {
+      const mortgageAmount = Number(rawMortgageAmount);
+      const mortgageTerm = Number(rawMortgageTerm);
+      const interestRate = Number(rawInterestRate);
+      const mortgageType = rawMortgageType === "repayment" ? "repayment" : "interestOnly";
+
+      // Initialize error state
+      let hasErrors = false;
+
+      const errors: ErrorFieldsType = {};
+
+      // Validate individual fields
+      if (!rawMortgageAmount || Number.isNaN(mortgageAmount) || mortgageAmount <= 0) {
+        errors.mortgageAmountError = "Please provide a valid mortgage amount.";
+        hasErrors = true;
+      }
+
+      if (!rawMortgageTerm || Number.isNaN(mortgageTerm) || mortgageTerm <= 0) {
+        errors.mortgageTermError = "Please provide a valid mortgage term.";
+        hasErrors = true;
+      }
+
+      if (!rawInterestRate || Number.isNaN(interestRate) || interestRate <= 0) {
+        errors.interestRateError = "Please provide a valid interest rate.";
+        hasErrors = true;
+      }
+
+      if (!mortgageType) {
+        errors.mortgageTypeError = "Please select a valid mortgage type.";
+        hasErrors = true;
+      }
+
+      // If errors exist, set error state and stop submission
+      if (hasErrors) {
+        setErrorFields(errors);
         return;
       }
 
+      // Clear errors if submission succeeds
+      setErrorFields({});
+
+      // Update state with valid data
       setCalculatorData({
         mortgageAmount,
         mortgageTerm,
@@ -42,6 +79,7 @@ export default function App() {
   }
 
   console.log(calculatorData);
+  console.log(errorFields);
 
   return (
     <div className="main-container">
@@ -67,6 +105,7 @@ export default function App() {
                     name="mortgage-amount"
                     className="control-input"
                   />
+                  {mortgageAmountError && <p className="error-text">{mortgageAmountError}</p>}
                 </div>
               </div>
 
@@ -83,6 +122,7 @@ export default function App() {
                       name="mortgage-term"
                       className="control-input"
                     />
+                    {mortgageTermError && <p className="error-text">{mortgageTermError}</p>}
                   </div>
                 </div>
 
@@ -98,13 +138,13 @@ export default function App() {
                       name="interest-rate"
                       className="control-input"
                     />
+                    {interestRateError && <p className="error-text">{interestRateError}</p>}
                   </div>
                 </div>
               </div>
 
               <div className="form-control-wrapper">
                 <h2 className="control-label">Mortgage Type</h2>
-
                 <div className="radio-control-wrapper">
                   <input
                     type="radio"
@@ -115,11 +155,11 @@ export default function App() {
                   />
                   <label htmlFor="repayment">Repayment</label>
                 </div>
-
                 <div className="radio-control-wrapper">
                   <input type="radio" id="interest" name="mortgage-type" value="interestOnly" />
                   <label htmlFor="interest">Interest Only</label>
                 </div>
+                {mortgageTypeError && <p className="error-text">{mortgageTypeError}</p>}
               </div>
             </div>
             <button className="calculate-btn btn">

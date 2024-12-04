@@ -155,6 +155,11 @@
   justify-content: center;
 }
 
+.error-text {
+  color: var(--red);
+  font-size: 12px;
+}
+
 @media (min-width: 900px) {
   .calculator-container--main {
     grid-template-columns: 1fr 1fr;

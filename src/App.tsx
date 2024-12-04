@@ -168,7 +168,7 @@ export default function App() {
             </button>
           </form>
         </div>
-        <Results data={calculatorData} />
+        <Results data={calculatorData} errorFields={errorFields} />
       </div>
     </div>
   );

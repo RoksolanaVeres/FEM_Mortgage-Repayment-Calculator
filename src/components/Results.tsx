@@ -2,17 +2,22 @@ import emptyResultImg from "../assets/images/illustration-empty.svg";
 import classes from "./Results.module.css";
 
 import { calculateMortgage } from "../utils/calculateMortgage.ts";
-import { calculatorDataType } from "../types/calculatorTypes.ts";
+import { calculatorDataType, ErrorFieldsType } from "../types/calculatorTypes.ts";
 
 type ResultsProps = {
   data: calculatorDataType;
+  errorFields: ErrorFieldsType;
 };
 
-export default function Results({ data }: ResultsProps) {
+export default function Results({ data, errorFields }: ResultsProps) {
   const { monthlyRepayment, totalRepayment } = calculateMortgage(data);
 
-  return (
-    // <EmptyFormResults />
+  const formIsValid =
+    !Number.isNaN(monthlyRepayment) &&
+    !Number.isNaN(totalRepayment) &&
+    Object.keys(errorFields).length === 0;
+
+  return formIsValid ? (
     <div className={classes.results_container}>
       <div>
         <h2 className={classes.results_header}>Your results</h2>
@@ -33,6 +38,8 @@ export default function Results({ data }: ResultsProps) {
         </div>
       </div>
     </div>
+  ) : (
+    <EmptyFormResults />
   );
 }
 

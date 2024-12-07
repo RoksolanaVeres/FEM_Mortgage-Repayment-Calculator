@@ -112,7 +112,9 @@ export default function App() {
                     type="number"
                     id="mortgage-amount"
                     name="mortgage-amount"
-                    className="control-input"
+                    className={`control-input control-input--left ${
+                      mortgageAmountError ? "input--error" : "input--valid"
+                    }`}
                   />
                   {mortgageAmountError && <p className="error-text">{mortgageAmountError}</p>}
                 </div>
@@ -129,7 +131,9 @@ export default function App() {
                       type="number"
                       id="mortgage-term"
                       name="mortgage-term"
-                      className="control-input"
+                      className={`control-input control-input--right ${
+                        mortgageTermError ? "input--error" : "input--valid"
+                      }`}
                     />
                     {mortgageTermError && <p className="error-text">{mortgageTermError}</p>}
                   </div>
@@ -145,7 +149,9 @@ export default function App() {
                       type="number"
                       id="interest-rate"
                       name="interest-rate"
-                      className="control-input"
+                      className={`control-input control-input--right ${
+                        interestRateError ? "input--error" : "input--valid"
+                      }`}
                     />
                     {interestRateError && <p className="error-text">{interestRateError}</p>}
                   </div>

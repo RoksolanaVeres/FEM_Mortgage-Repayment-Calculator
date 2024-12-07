@@ -4,13 +4,15 @@ import Results from "./components/Results";
 
 import { calculatorDataType, ErrorFieldsType } from "./types/calculatorTypes";
 
+const initialCalculatorData: calculatorDataType = {
+  mortgageAmount: 0,
+  mortgageTerm: 0,
+  interestRate: 0,
+  mortgageType: "repayment",
+};
+
 export default function App() {
-  const [calculatorData, setCalculatorData] = useState<calculatorDataType>({
-    mortgageAmount: 0,
-    mortgageTerm: 0,
-    interestRate: 0,
-    mortgageType: "repayment",
-  });
+  const [calculatorData, setCalculatorData] = useState<calculatorDataType>(initialCalculatorData);
 
   const [errorFields, setErrorFields] = useState<ErrorFieldsType>({});
   const { mortgageAmountError, mortgageTermError, interestRateError, mortgageTypeError } =
@@ -78,6 +80,11 @@ export default function App() {
     }
   }
 
+  function handleClearForm() {
+    setErrorFields({});
+    setCalculatorData(initialCalculatorData);
+  }
+
   console.log(calculatorData);
   console.log(errorFields);
 
@@ -89,7 +96,9 @@ export default function App() {
           <form action="" className="calculations-form" ref={formRef} onSubmit={handleFormSubmit}>
             <div className="calculations-header">
               <h1 className="calculations-heading">Mortgage Calculator</h1>
-              <input type="reset" value="Clear All" className="btn reset" />
+              <button type="reset" className="btn reset" onClick={handleClearForm}>
+                Clear All
+              </button>
             </div>
 
             <div className="form-controls-container">

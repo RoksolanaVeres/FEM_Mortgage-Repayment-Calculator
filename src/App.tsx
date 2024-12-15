@@ -1,6 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 import calculatorIcon from "./assets/images/icon-calculator.svg";
 import Results from "./components/Results";
+import FormInput from "./components/FormInput";
 
 import { calculatorDataType, ErrorFieldsType } from "./types/calculatorTypes";
 
@@ -102,62 +103,29 @@ export default function App() {
             </div>
 
             <div className="form-controls-container">
-              <div className="form-control-wrapper">
-                <label htmlFor="mortgage-amount" className="control-label">
-                  Mortgage Amount
-                </label>
-                <div className="control-input-icon-container">
-                  <div className="control-icon control-icon--left">£</div>
-                  <input
-                    type="number"
-                    id="mortgage-amount"
-                    name="mortgage-amount"
-                    className={`control-input control-input--left ${
-                      mortgageAmountError ? "input--error" : "input--valid"
-                    }`}
-                  />
-                  {mortgageAmountError && <p className="error-text">{mortgageAmountError}</p>}
-                </div>
-              </div>
+              <FormInput
+                error={mortgageAmountError}
+                label="Mortgage Amount"
+                id="mortgage-amount"
+                unit="£"
+                unitLeft
+              />
 
               <div className="term-rate-container">
-                <div className="form-control-wrapper">
-                  <label htmlFor="mortgage-term" className="control-label">
-                    Mortgage Term
-                  </label>
-                  <div className="control-input-icon-container">
-                    <div className="control-icon control-icon--right">years</div>
-                    <input
-                      type="number"
-                      id="mortgage-term"
-                      name="mortgage-term"
-                      className={`control-input control-input--right ${
-                        mortgageTermError ? "input--error" : "input--valid"
-                      }`}
-                    />
-                    {mortgageTermError && <p className="error-text">{mortgageTermError}</p>}
-                  </div>
-                </div>
+                <FormInput
+                  error={mortgageTermError}
+                  label="Mortgage Term"
+                  id="mortgage-term"
+                  unit="years"
+                />
 
-                <div className="form-control-wrapper">
-                  <label htmlFor="interest-rate" className="control-label">
-                    Interest Rate
-                  </label>
-                  <div className="control-input-icon-container">
-                    <div className="control-icon control-icon--right">%</div>
-                    <input
-                      type="number"
-                      id="interest-rate"
-                      name="interest-rate"
-                      className={`control-input control-input--right ${
-                        interestRateError ? "input--error" : "input--valid"
-                      }`}
-                    />
-                    {interestRateError && <p className="error-text">{interestRateError}</p>}
-                  </div>
-                </div>
+                <FormInput
+                  error={interestRateError}
+                  label="Interest Rate"
+                  id="interest-rate"
+                  unit="%"
+                />
               </div>
-
               <div className="form-control-wrapper">
                 <h2 className="control-label">Mortgage Type</h2>
                 <label className="radio-control-wrapper">

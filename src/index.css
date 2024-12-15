@@ -11,6 +11,7 @@
 
 :root {
   --lime: hsl(61, 70%, 52%);
+  --lime-trasparent: hsla(61, 70%, 52%, 0.144);
   --red: hsl(4, 69%, 50%);
   --white: hsl(0, 0%, 100%);
   --slate-100: hsl(202, 86%, 94%);
@@ -169,9 +170,36 @@
   display: flex;
   gap: 20px;
   padding: 15px;
-  border: 1px solid var(--slate-500);
+  border: none;
+  outline: 2px solid var(--slate-500);
   font-weight: 700;
   border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+  color: var(--slate-900);
+}
+
+.radio-input {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  padding: 5px;
+  outline: 2px solid var(--slate-500);
+  border: 3px solid transparent;
+  height: 16px;
+  width: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.radio-input:checked {
+  background: var(--lime);
+  outline: 2px solid var(--lime);
+  border: 3px solid var(--white);
+}
+
+.radio-control-wrapper:has(.radio-input:checked) {
+  background-color: var(--lime-trasparent);
+   outline: 2px solid var(--lime);
 }
 
 .calculate-btn {

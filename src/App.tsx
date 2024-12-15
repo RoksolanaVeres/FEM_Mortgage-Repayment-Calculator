@@ -160,20 +160,26 @@ export default function App() {
 
               <div className="form-control-wrapper">
                 <h2 className="control-label">Mortgage Type</h2>
-                <div className="radio-control-wrapper">
+                <label className="radio-control-wrapper">
                   <input
+                    className="radio-input"
                     type="radio"
-                    id="repayment"
                     name="mortgage-type"
                     value="repayment"
                     defaultChecked
                   />
-                  <label htmlFor="repayment">Repayment</label>
-                </div>
-                <div className="radio-control-wrapper">
-                  <input type="radio" id="interest" name="mortgage-type" value="interestOnly" />
-                  <label htmlFor="interest">Interest Only</label>
-                </div>
+                  Repayment
+                </label>
+                <label className="radio-control-wrapper">
+                  <input
+                    className="radio-input"
+                    type="radio"
+                    id="interest"
+                    name="mortgage-type"
+                    value="interestOnly"
+                  />
+                  Interest Only
+                </label>
                 {mortgageTypeError && <p className="error-text">{mortgageTypeError}</p>}
               </div>
             </div>

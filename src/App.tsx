@@ -104,15 +104,19 @@ export default function App() {
 
             <div className="form-controls-container">
               <FormInput
+                type="number"
+                name="mortgage-amount"
+                id="mortgage-amount"
                 error={mortgageAmountError}
                 label="Mortgage Amount"
-                id="mortgage-amount"
                 unit="£"
                 unitLeft
               />
 
               <div className="term-rate-container">
                 <FormInput
+                  type="number"
+                  name="mortgage-term"
                   error={mortgageTermError}
                   label="Mortgage Term"
                   id="mortgage-term"
@@ -120,6 +124,8 @@ export default function App() {
                 />
 
                 <FormInput
+                  type="number"
+                  name="interest-rate"
                   error={interestRateError}
                   label="Interest Rate"
                   id="interest-rate"
@@ -128,26 +134,21 @@ export default function App() {
               </div>
               <div className="form-control-wrapper">
                 <h2 className="control-label">Mortgage Type</h2>
-                <label className="radio-control-wrapper">
-                  <input
-                    className="radio-input"
-                    type="radio"
-                    name="mortgage-type"
-                    value="repayment"
-                    defaultChecked
-                  />
-                  Repayment
-                </label>
-                <label className="radio-control-wrapper">
-                  <input
-                    className="radio-input"
-                    type="radio"
-                    id="interest"
-                    name="mortgage-type"
-                    value="interestOnly"
-                  />
-                  Interest Only
-                </label>
+
+                <FormInput
+                  type="radio"
+                  name="mortgage-type"
+                  value="repayment"
+                  label="Repayment"
+                  defaultChecked
+                />
+                <FormInput
+                  type="radio"
+                  name="mortgage-type"
+                  value="interestOnly"
+                  label="Interest Only"
+                />
+
                 {mortgageTypeError && <p className="error-text">{mortgageTypeError}</p>}
               </div>
             </div>

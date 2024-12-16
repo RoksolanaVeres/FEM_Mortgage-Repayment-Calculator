@@ -4,6 +4,7 @@ import Results from "./components/Results";
 import FormInput from "./components/FormInput";
 
 import { calculatorDataType, ErrorFieldsType } from "./types/calculatorTypes";
+import { FormControlWrapper } from "./components/FormInput";
 
 const initialCalculatorData: calculatorDataType = {
   mortgageAmount: 0,
@@ -132,7 +133,7 @@ export default function App() {
                   unit="%"
                 />
               </div>
-              <div className="form-control-wrapper">
+              <FormControlWrapper>
                 <h2 className="control-label">Mortgage Type</h2>
 
                 <FormInput
@@ -150,7 +151,7 @@ export default function App() {
                 />
 
                 {mortgageTypeError && <p className="error-text">{mortgageTypeError}</p>}
-              </div>
+              </FormControlWrapper>
             </div>
             <button className="calculate-btn btn">
               <img src={calculatorIcon} alt="" />

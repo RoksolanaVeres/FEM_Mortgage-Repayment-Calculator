@@ -1,4 +1,6 @@
-type Props = {
+import classes from "./FormInput.module.css";
+
+type FormInputProps = {
   type: "number" | "radio";
   name: string;
   label: string;
@@ -20,16 +22,18 @@ export default function FormInput({
   unitLeft,
   defaultChecked,
   value,
-}: Props) {
+}: FormInputProps) {
   if (type === "number") {
     return (
-      <div className="form-control-wrapper">
-        <label htmlFor={id} className="control-label">
+      <FormControlWrapper>
+        <label htmlFor={id} className={classes.input_label}>
           {label}
         </label>
-        <div className="control-input-icon-container">
+        <div className={classes["input-unit_container"]}>
           <div
-            className={`control-icon ${unitLeft ? "control-icon--left" : "control-icon--right"} `}
+            className={`${classes.input_unit} ${
+              unitLeft ? classes["input_unit--left"] : classes["input_unit--right"]
+            } `}
           >
             {unit}
           </div>
@@ -37,26 +41,42 @@ export default function FormInput({
             type="number"
             id={id}
             name={name}
-            className={`control-input ${
-              unitLeft ? "control-input--left" : "control-input--right"
-            } ${error ? "input--error" : "input--valid"}`}
+            className={`${classes.input} ${
+              unitLeft ? classes["input--left"] : classes["input--right"]
+            } ${error ? classes["input--error"] : classes["input--valid"]}`}
           />
-          {error && <p className="error-text">{error}</p>}
+          {error && <InputError>{error}</InputError>}
         </div>
-      </div>
+      </FormControlWrapper>
     );
   } else {
     return (
-      <label className="radio-control-wrapper">
+      <label className={classes["radio-control-wrapper"]}>
         <input
           type="radio"
           name={name}
           value={value}
           defaultChecked={defaultChecked}
-          className="radio-input"
+          className={classes["radio-input"]}
         />
         {label}
       </label>
     );
   }
+}
+
+type FormControlWrapperProps = {
+  children: React.ReactNode;
+};
+
+export function FormControlWrapper({ children }: FormControlWrapperProps) {
+  return <div className={classes["form-control-wrapper"]}>{children}</div>;
+}
+
+type InputErrorProps = {
+  children: React.ReactNode;
+};
+
+function InputError({ children }: InputErrorProps) {
+  return <p className={classes["error-text"]}>{children}</p>;
 }

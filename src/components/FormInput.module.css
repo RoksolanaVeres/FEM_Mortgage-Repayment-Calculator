@@ -1,0 +1,129 @@
+.input_label {
+  font-size: 16px;
+  color: var(--slate-700);
+  font-weight: 400;
+}
+
+.input-unit_container {
+  position: relative;
+}
+
+.input-unit_container:has(.control-input:focus) .input_unit {
+  background-color: var(--lime);
+  color: var(--slate-900);
+}
+
+.input-unit_container:has(.input--error) .input_unit {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.input_unit {
+  position: absolute;
+  top: 2px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 20px;
+  background-color: var(--slate-100);
+  color: var(--slate-700);
+  font-weight: 600;
+}
+
+.input_unit--left {
+  left: 2px;
+  border-radius: 5px 0 0 5px;
+}
+
+.input_unit--right {
+  right: 2px;
+  border-radius: 0 5px 5px 0;
+}
+
+.input {
+  border: none;
+  outline: 2px solid;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.input--left {
+  padding: 0 10px 0 60px;
+}
+
+.input--right {
+  padding: 0 60px 0 10px;
+}
+
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.input:focus {
+  outline: 2px solid var(--lime);
+  border: none;
+}
+
+.input--valid {
+  outline-color: var(--slate-500);
+}
+
+.input--error {
+  outline-color: var(--red);
+}
+
+.error-text {
+  color: var(--red);
+  font-size: 12px;
+}
+
+.radio-control-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border: none;
+  outline: 2px solid var(--slate-500);
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  align-items: center;
+  color: var(--slate-900);
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-control-wrapper:hover {
+  outline-color: var(--lime);
+}
+
+.radio-control-wrapper:has(.radio-input:checked) {
+  background-color: var(--lime-trasparent);
+  outline-color: var(--lime);
+}
+
+.radio-input {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  padding: 5px;
+  outline: 2px solid var(--slate-500);
+  border: 3px solid transparent;
+  height: 16px;
+  width: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-input:checked {
+  background: var(--lime);
+  outline: 2px solid var(--lime);
+  border: 3px solid var(--white);
+}
+
+.form-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
